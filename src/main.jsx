@@ -5,9 +5,9 @@ import "./index.css";
 import { Palette } from "./Theme";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  // <React.StrictMode>
-  <Palette>
-    <App />
-  </Palette>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <Palette>
+      <App />
+    </Palette>
+  </React.StrictMode>
 );

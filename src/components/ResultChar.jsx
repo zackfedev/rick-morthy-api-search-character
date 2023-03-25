@@ -14,9 +14,9 @@ const ResultChar = ({ searchTerm }) => {
       container
       rowSpacing={5}
       columnSpacing={{ xs: 1, md: 5 }}>
-      {searchResult.map(({ name, image, status, gender, species, location }, index) => (
+      {searchResult.map(({ id, name, image, status, gender, species, location }) => (
         <Grid
-          key={index}
+          key={id}
           item
           md={6}
           sm={12}>

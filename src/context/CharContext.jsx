@@ -1,38 +1,31 @@
 import { Pagination } from "@mui/material";
-import { useEffect, createContext, useState, useMemo } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const CharContext = createContext([]);
 
 export const CharProvider = ({ children }) => {
   const [page, setPage] = useState(1);
+  const [char, setChar] = useState([]);
 
   const handlePage = (e, value) => {
     setPage(value);
   };
 
-  const memoizedData = useMemo(async () => {
+  const getCharacter = async () => {
     const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`);
     const data = await response.json();
 
-    return data.results;
-  }, [page]);
+    setChar(data.results);
+  };
 
   useEffect(() => {
-    memoizedData.then((data) => {
-      setChar(data);
-    });
-  }, [memoizedData]);
+    getCharacter();
+  }, [page]);
 
-  const [char, setChar] = useState([]);
-
-  const charInfo = useMemo(() => {
-    return {
-      char,
-      page,
-    };
-  }, [char, page]);
-
-  console.log(char);
+  const charInfo = {
+    char,
+    page,
+  };
 
   return (
     <CharContext.Provider value={charInfo}>
