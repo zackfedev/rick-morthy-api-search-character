@@ -6,38 +6,25 @@ export const CharContext = createContext([]);
 export const CharProvider = ({ children }) => {
   const [char, setChar] = useState([]);
   const [page, setPage] = useState(1);
+  const URL = `https://rickandmortyapi.com/api/character/?page=${page}`;
 
   const getCharacter = async () => {
-    const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`);
+    // console.log(URL, page);
+    const response = await fetch(URL);
     const data = await response.json();
 
     setChar(data.results);
   };
 
-  let isFetching = false;
-
   useEffect(() => {
-    if (!isFetching) {
-      isFetching = true;
-
-      getCharacter();
-    }
+    getCharacter();
   }, [page]);
 
-  const handleChangePage = (e, value) => {
-    setPage(value);
+  const setCurrentPages = (p) => {
+    setPage(p);
   };
 
   return (
-    <CharContext.Provider value={char}>
-      <Pagination
-        sx={{ pb: 3 }}
-        count={10}
-        page={page}
-        onChange={handleChangePage}
-        size='large'
-      />
-      {children}
-    </CharContext.Provider>
+    <CharContext.Provider value={{ char, setCurrentPages, page }}>{children}</CharContext.Provider>
   );
 };
