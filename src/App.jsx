@@ -1,11 +1,8 @@
-import { useContext, useEffect, useState } from "react";
-
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { CharContext, CharProvider } from "./context/CharContext";
-import { Pagination } from "@mui/material";
+import { CharProvider } from "./context/CharContext";
 import ResultChar from "./components/ResultChar";
-import ResultCharFromParams from "./components/ResultCharFromParams";
 import Layout from "./layouts/Layout";
+import "./App.css";
 
 export default function App() {
   // const { char, setCurrentPages, page } = useContext(CharContext);
