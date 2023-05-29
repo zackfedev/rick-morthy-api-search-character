@@ -1,25 +1,31 @@
-import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box } from "@mui/system";
-import { Chip, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Chip, Card, CardContent, CardMedia, Typography, useMediaQuery } from "@mui/material";
 import FemaleOutlinedIcon from "@mui/icons-material/FemaleOutlined";
 import MaleOutlinedIcon from "@mui/icons-material/MaleOutlined";
 import ShareLocationIcon from "@mui/icons-material/ShareLocation";
 
 export default function DisplayCard({ source, charNames, gender, status, species, location }) {
   const theme = useTheme();
+  const mq = useMediaQuery("(max-width:587px)");
 
   return (
-    <Card sx={{ display: "flex", borderRadius: 3, background: theme.palette.grey[900] }}>
+    <Card
+      sx={{
+        width: "100%",
+        display: `${mq ? "block" : "flex"}`,
+        borderRadius: 3,
+        background: theme.palette.grey[900],
+      }}>
       <CardMedia
         component='img'
-        sx={{ width: 280 }}
+        sx={{ maxWidth: "100%", height: "auto" }}
         image={source}
         alt={`image-for-${source}`}
       />
-      <CardContent sx={{ color: theme.palette.common.white, px: 2 }}>
+      <CardContent sx={{ color: theme.palette.common.white, px: 2, minWidth: 240 }}>
         <Typography
-          component='h2'
+          component='h4'
           variant='h4'>
           {charNames}{" "}
           {gender === "Male" ? (
@@ -50,7 +56,7 @@ export default function DisplayCard({ source, charNames, gender, status, species
           <ShareLocationIcon />
           <Typography
             color='primary'
-            component='h2'
+            component='h5'
             variant='body1'>
             {location.name}
           </Typography>
