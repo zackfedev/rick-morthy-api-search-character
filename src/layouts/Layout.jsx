@@ -13,11 +13,12 @@ const Layout = ({ children }) => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        height: "100%",
       }}>
       <Typography
-        variant='h3'
-        component='h1'>
-        Api From{" "}
+        variant='h5'
+        component='h5'>
+        Search Your Character using Query{" "}
         <Link
           href='https://rickandmortyapi.com/'
           underline='hover'>
