@@ -6,11 +6,9 @@ export const CharContext = createContext([]);
 export const CharProvider = ({ children }) => {
   const [char, setChar] = useState([]);
   const [page, setPage] = useState(1);
-  const URL = `https://rickandmortyapi.com/api/character/?page=${page}`;
 
   const getCharacter = async () => {
-    // console.log(URL, page);
-    const response = await fetch(URL);
+    const response = await fetch(`https://rickandmortyapi.com/api/character/?page=1`);
     const data = await response.json();
 
     setChar(data.results);
