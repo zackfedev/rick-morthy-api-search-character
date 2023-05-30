@@ -9,6 +9,7 @@ const ResultChar = ({ resultChar, isError }) => {
   return (
     <Grid
       container
+      justifyContent='center'
       rowSpacing={5}
       columnSpacing={{ xs: 1, md: 5 }}
       sx={{ width: "100%" }}>
